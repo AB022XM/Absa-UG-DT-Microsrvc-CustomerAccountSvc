@@ -1,0 +1,5 @@
+entity Response{
+    statusCode Integer,
+    statusMessage String
+
+}
