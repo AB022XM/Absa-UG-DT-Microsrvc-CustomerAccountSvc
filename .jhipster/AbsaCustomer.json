@@ -1,0 +1,487 @@
+{
+  "applications": "*",
+  "changelogDate": "20230721201905",
+  "clientRootFolder": "AbsaUGDTMicrosrvcCustomerAccountSvc",
+  "databaseType": "sql",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "absa_customer",
+  "fields": [
+    {
+      "fieldName": "accountCurrency",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "accountNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "accountStatus",
+      "fieldType": "AccountStatus",
+      "fieldValues": "Active,Closed,ClosedWithdrawal"
+    },
+    {
+      "fieldName": "accountLifecycleStatusCode",
+      "fieldType": "AccountLifecycleStatusCode",
+      "fieldValues": "ACTIVE (8)"
+    },
+    {
+      "fieldName": "accrualStatusCode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "casaAccountStatus",
+      "fieldType": "CASAAccountStatus",
+      "fieldValues": "ACTIVE (8)"
+    },
+    {
+      "fieldName": "minorAccountStatusCode",
+      "fieldType": "MinorAccountStatusCode",
+      "fieldValues": "MAJOR,MINOR"
+    },
+    {
+      "fieldName": "accountTitle",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "advanceAgainstUnclearedFunds",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "adHocStatementFlag",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "additionalAddressFlag",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "atmFacilityFlag",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "checkReorderThresholdNumber",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "deferredStmtGenerationDayOfMonth",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "generateRateChangeIntimationFlag",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "groupBonusInteresFlag",
+      "fieldType": "GroupBonusInteresFlag",
+      "fieldValues": "N,Y"
+    },
+    {
+      "fieldName": "holdMailFlag",
+      "fieldType": "HoldMailFlag",
+      "fieldValues": "ON_HOLD (1),OFF_HOLD (0)"
+    },
+    {
+      "fieldName": "interestWaiverFlag",
+      "fieldType": "InterestWaiverFlag",
+      "fieldValues": "NO_INTEREST_WAIVER (0),INTEREST_WAIVER (1)"
+    },
+    {
+      "fieldName": "internetBankingAccessFlag",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "inwardDirectDebitAuthorizationFlag",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "jointAccountFlag",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "leadDaysIntimation",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "mailAddressControlFlag",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "mobileFacilityFlag",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "numberOfCheckWithdrawals",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "numberOfPastDueChecks",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "numberOfStatementCopies",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "overdraftLimitAmount",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "pointOfSaleFacilityFlag",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "standingInstructionFlag",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "sweepoutInstructionFlag",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "availableBalance",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "branchCode",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "branchName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "branchShortName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "creditsMonthTillDateAmount",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "currentBalance",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "customerNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "isAbsaCustomer",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "fullName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "accountOpeningDate",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "statementPeriodStartDate",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "statementPeriodEndDate",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "debitsLastDate",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "creditLastDate",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "debitsMonthTillDateAmount",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "debitsYearTillDateAmount",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "creditInterestAccruedAmount",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "debitInterestAccruedAmount",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "adjustedCreditInterestAccrued",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "adjustedDebitInterestAccrued",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "projectedTaxOnAccruedInterestAmount",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "interestAccruedInCurrentFinancialYear",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "issuedInventoryPropertyType",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastIssuedCheckNumber",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "languageCode",
+      "fieldType": "LanguageCode",
+      "fieldValues": "English"
+    },
+    {
+      "fieldName": "lineNumber",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "minimumRequiredBalanceAmount",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "minimumRequiredTradingBalanceAmount",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "mtdCreditsCount",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "mtdDebitsCount",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "netAvailableBalanceForWithdrawal",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "netBalanceAmount",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "passbookLifecycleStatusCode",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "periodicAverageBalanceAmount",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "previousDayClosingBookBalance",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "productCode",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "productName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "restrictedAccountFlag",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "staffFlag",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "sweepinAmountOnLien",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "taxCode1",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "taxCode2",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "tdsExemptionLimitAmount1",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "tdsExemptionLimitAmount2",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "totalCASAHoldAmount",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "totalUnclearFundAmount",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "ytdCreditLastAmount",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "ytdCreditsCount",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "ytdDebitsCount",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "ytdDebitsLastAmount",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "message",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sourceInfo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "custFreeTextField1",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "custFreeTextField2",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "custFreeTextField3",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "custFreeTextField4",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "custFreeTextField5",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "custFreeTextField6",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "custFreeTextField7",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "custFreeTextField8",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "custFreeTextField9",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "custFreeTextField10",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "custFreeTextField11",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "custFreeTextField12",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "custFreeTextField13",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "custFreeTextField14",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "custFreeTextField15",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "custFreeTextField16",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "custFreeTextField17",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "custFreeTextField18",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "custFreeTextField19",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "custFreeTextField20",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "custFreeTextField21",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "custFreeTextField22",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "custFreeTextField23",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "custFreeTextField24",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "custFreeTextField25",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "custFreeTextField26",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "custFreeTextField27",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "custFreeTextField28",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "custFreeTextField29",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "custFreeTextField30",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "custFreeTextField31",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "microserviceName": "AbsaUGDTMicrosrvcCustomerAccountSvc",
+  "name": "AbsaCustomer",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "no"
+}

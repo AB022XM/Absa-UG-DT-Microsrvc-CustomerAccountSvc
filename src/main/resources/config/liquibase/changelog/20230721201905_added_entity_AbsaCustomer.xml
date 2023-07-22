@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity AbsaCustomer.
+    -->
+    <changeSet id="20230721201905-1" author="jhipster">
+        <createTable tableName="absa_customer">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="account_currency" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="account_number" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="account_status" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="account_lifecycle_status_code" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="accrual_status_code" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="casa_account_status" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="minor_account_status_code" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="account_title" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="advance_against_uncleared_funds" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="ad_hoc_statement_flag" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="additional_address_flag" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="atm_facility_flag" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="check_reorder_threshold_number" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="deferred_stmt_generation_day_of_month" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="generate_rate_change_intimation_flag" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="group_bonus_interes_flag" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="hold_mail_flag" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="interest_waiver_flag" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="internet_banking_access_flag" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="inward_direct_debit_authorization_flag" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="joint_account_flag" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="lead_days_intimation" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="mail_address_control_flag" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="mobile_facility_flag" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="number_of_check_withdrawals" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="number_of_past_due_checks" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="number_of_statement_copies" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="overdraft_limit_amount" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="point_of_sale_facility_flag" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="standing_instruction_flag" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="sweepout_instruction_flag" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="available_balance" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="branch_code" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="branch_name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="branch_short_name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="credits_month_till_date_amount" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="current_balance" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="customer_number" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="is_absa_customer" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="full_name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="account_opening_date" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="statement_period_start_date" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="statement_period_end_date" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="debits_last_date" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="credit_last_date" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="debits_month_till_date_amount" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="debits_year_till_date_amount" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="credit_interest_accrued_amount" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="debit_interest_accrued_amount" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="adjusted_credit_interest_accrued" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="adjusted_debit_interest_accrued" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="projected_tax_on_accrued_interest_amount" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="interest_accrued_in_current_financial_year" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="issued_inventory_property_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="last_issued_check_number" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="language_code" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="line_number" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="minimum_required_balance_amount" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="minimum_required_trading_balance_amount" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="mtd_credits_count" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="mtd_debits_count" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="net_available_balance_for_withdrawal" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="net_balance_amount" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="passbook_lifecycle_status_code" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="periodic_average_balance_amount" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="previous_day_closing_book_balance" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="product_code" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="product_name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="restricted_account_flag" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="staff_flag" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="sweepin_amount_on_lien" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="tax_code_1" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="tax_code_2" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="tds_exemption_limit_amount_1" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="tds_exemption_limit_amount_2" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="total_casa_hold_amount" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="total_unclear_fund_amount" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="ytd_credit_last_amount" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="ytd_credits_count" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="ytd_debits_count" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="ytd_debits_last_amount" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="message" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="source_info" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="status" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cust_free_text_field_1" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cust_free_text_field_2" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cust_free_text_field_3" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cust_free_text_field_4" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cust_free_text_field_5" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cust_free_text_field_6" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cust_free_text_field_7" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cust_free_text_field_8" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cust_free_text_field_9" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cust_free_text_field_10" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cust_free_text_field_11" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cust_free_text_field_12" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cust_free_text_field_13" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cust_free_text_field_14" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cust_free_text_field_15" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cust_free_text_field_16" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cust_free_text_field_17" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cust_free_text_field_18" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cust_free_text_field_19" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cust_free_text_field_20" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cust_free_text_field_21" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cust_free_text_field_22" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cust_free_text_field_23" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cust_free_text_field_24" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cust_free_text_field_25" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cust_free_text_field_26" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cust_free_text_field_27" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cust_free_text_field_28" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cust_free_text_field_29" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cust_free_text_field_30" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cust_free_text_field_31" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+        <dropDefaultValue tableName="absa_customer" columnName="account_opening_date" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="absa_customer" columnName="statement_period_start_date" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="absa_customer" columnName="statement_period_end_date" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="absa_customer" columnName="debits_last_date" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="absa_customer" columnName="credit_last_date" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="absa_customer" columnName="debits_month_till_date_amount" columnDataType="${datetimeType}"/>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20230721201905-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/absa_customer.csv"
+                  separator=";"
+                  tableName="absa_customer"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="account_currency" type="string"/>
+            <column name="account_number" type="string"/>
+            <column name="account_status" type="string"/>
+            <column name="account_lifecycle_status_code" type="string"/>
+            <column name="accrual_status_code" type="string"/>
+            <column name="casa_account_status" type="string"/>
+            <column name="minor_account_status_code" type="string"/>
+            <column name="account_title" type="string"/>
+            <column name="advance_against_uncleared_funds" type="numeric"/>
+            <column name="ad_hoc_statement_flag" type="boolean"/>
+            <column name="additional_address_flag" type="boolean"/>
+            <column name="atm_facility_flag" type="boolean"/>
+            <column name="check_reorder_threshold_number" type="numeric"/>
+            <column name="deferred_stmt_generation_day_of_month" type="numeric"/>
+            <column name="generate_rate_change_intimation_flag" type="boolean"/>
+            <column name="group_bonus_interes_flag" type="string"/>
+            <column name="hold_mail_flag" type="string"/>
+            <column name="interest_waiver_flag" type="string"/>
+            <column name="internet_banking_access_flag" type="boolean"/>
+            <column name="inward_direct_debit_authorization_flag" type="boolean"/>
+            <column name="joint_account_flag" type="boolean"/>
+            <column name="lead_days_intimation" type="boolean"/>
+            <column name="mail_address_control_flag" type="boolean"/>
+            <column name="mobile_facility_flag" type="boolean"/>
+            <column name="number_of_check_withdrawals" type="numeric"/>
+            <column name="number_of_past_due_checks" type="numeric"/>
+            <column name="number_of_statement_copies" type="numeric"/>
+            <column name="overdraft_limit_amount" type="numeric"/>
+            <column name="point_of_sale_facility_flag" type="boolean"/>
+            <column name="standing_instruction_flag" type="boolean"/>
+            <column name="sweepout_instruction_flag" type="boolean"/>
+            <column name="available_balance" type="numeric"/>
+            <column name="branch_code" type="numeric"/>
+            <column name="branch_name" type="string"/>
+            <column name="branch_short_name" type="string"/>
+            <column name="credits_month_till_date_amount" type="numeric"/>
+            <column name="current_balance" type="numeric"/>
+            <column name="customer_number" type="string"/>
+            <column name="is_absa_customer" type="boolean"/>
+            <column name="full_name" type="string"/>
+            <column name="account_opening_date" type="date"/>
+            <column name="statement_period_start_date" type="date"/>
+            <column name="statement_period_end_date" type="date"/>
+            <column name="debits_last_date" type="date"/>
+            <column name="credit_last_date" type="date"/>
+            <column name="debits_month_till_date_amount" type="date"/>
+            <column name="debits_year_till_date_amount" type="numeric"/>
+            <column name="credit_interest_accrued_amount" type="numeric"/>
+            <column name="debit_interest_accrued_amount" type="numeric"/>
+            <column name="adjusted_credit_interest_accrued" type="numeric"/>
+            <column name="adjusted_debit_interest_accrued" type="numeric"/>
+            <column name="projected_tax_on_accrued_interest_amount" type="numeric"/>
+            <column name="interest_accrued_in_current_financial_year" type="numeric"/>
+            <column name="issued_inventory_property_type" type="string"/>
+            <column name="last_issued_check_number" type="numeric"/>
+            <column name="language_code" type="string"/>
+            <column name="line_number" type="numeric"/>
+            <column name="minimum_required_balance_amount" type="numeric"/>
+            <column name="minimum_required_trading_balance_amount" type="numeric"/>
+            <column name="mtd_credits_count" type="numeric"/>
+            <column name="mtd_debits_count" type="numeric"/>
+            <column name="net_available_balance_for_withdrawal" type="numeric"/>
+            <column name="net_balance_amount" type="numeric"/>
+            <column name="passbook_lifecycle_status_code" type="numeric"/>
+            <column name="periodic_average_balance_amount" type="numeric"/>
+            <column name="previous_day_closing_book_balance" type="numeric"/>
+            <column name="product_code" type="numeric"/>
+            <column name="product_name" type="string"/>
+            <column name="restricted_account_flag" type="boolean"/>
+            <column name="staff_flag" type="boolean"/>
+            <column name="sweepin_amount_on_lien" type="numeric"/>
+            <column name="tax_code_1" type="numeric"/>
+            <column name="tax_code_2" type="numeric"/>
+            <column name="tds_exemption_limit_amount_1" type="numeric"/>
+            <column name="tds_exemption_limit_amount_2" type="numeric"/>
+            <column name="total_casa_hold_amount" type="numeric"/>
+            <column name="total_unclear_fund_amount" type="numeric"/>
+            <column name="ytd_credit_last_amount" type="numeric"/>
+            <column name="ytd_credits_count" type="numeric"/>
+            <column name="ytd_debits_count" type="numeric"/>
+            <column name="ytd_debits_last_amount" type="numeric"/>
+            <column name="message" type="string"/>
+            <column name="source_info" type="string"/>
+            <column name="status" type="string"/>
+            <column name="cust_free_text_field_1" type="string"/>
+            <column name="cust_free_text_field_2" type="string"/>
+            <column name="cust_free_text_field_3" type="string"/>
+            <column name="cust_free_text_field_4" type="string"/>
+            <column name="cust_free_text_field_5" type="string"/>
+            <column name="cust_free_text_field_6" type="string"/>
+            <column name="cust_free_text_field_7" type="string"/>
+            <column name="cust_free_text_field_8" type="string"/>
+            <column name="cust_free_text_field_9" type="string"/>
+            <column name="cust_free_text_field_10" type="string"/>
+            <column name="cust_free_text_field_11" type="string"/>
+            <column name="cust_free_text_field_12" type="string"/>
+            <column name="cust_free_text_field_13" type="string"/>
+            <column name="cust_free_text_field_14" type="string"/>
+            <column name="cust_free_text_field_15" type="string"/>
+            <column name="cust_free_text_field_16" type="string"/>
+            <column name="cust_free_text_field_17" type="string"/>
+            <column name="cust_free_text_field_18" type="string"/>
+            <column name="cust_free_text_field_19" type="string"/>
+            <column name="cust_free_text_field_20" type="string"/>
+            <column name="cust_free_text_field_21" type="string"/>
+            <column name="cust_free_text_field_22" type="string"/>
+            <column name="cust_free_text_field_23" type="string"/>
+            <column name="cust_free_text_field_24" type="string"/>
+            <column name="cust_free_text_field_25" type="string"/>
+            <column name="cust_free_text_field_26" type="string"/>
+            <column name="cust_free_text_field_27" type="string"/>
+            <column name="cust_free_text_field_28" type="string"/>
+            <column name="cust_free_text_field_29" type="string"/>
+            <column name="cust_free_text_field_30" type="string"/>
+            <column name="cust_free_text_field_31" type="string"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

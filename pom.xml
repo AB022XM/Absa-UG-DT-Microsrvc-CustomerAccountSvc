@@ -1390,6 +1390,12 @@
             <id>zipkin</id>
             <dependencies>
                 <dependency>
+                    <groupId>org.projectlombok</groupId>
+                    <artifactId>lombok</artifactId>
+                    <version>1.18.28</version>
+                    <scope>provided</scope>
+                </dependency>
+                <dependency>
                     <groupId>io.micrometer</groupId>
                     <artifactId>micrometer-tracing</artifactId>
                 </dependency>

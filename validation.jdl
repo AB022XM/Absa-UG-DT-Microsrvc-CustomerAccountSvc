@@ -1,5 +1,176 @@
-entity Response{
-    statusCode Integer,
-    statusMessage String
+entity AbsaCustomer {
+    accountCurrency String,
+    accountNumber String
+    accountStatus AccountStatus
+    accountLifecycleStatusCode AccountLifecycleStatusCode
+    accrualStatusCode String,
+    casaAccountStatus CASAAccountStatus,
+    minorAccountStatusCode MinorAccountStatusCode,
+    accountTitle String,
+    advanceAgainstUnclearedFunds BigDecimal,
+    adHocStatementFlag Boolean,
+    additionalAddressFlag Boolean,
+    atmFacilityFlag Boolean,
+    checkReorderThresholdNumber BigDecimal,
+    deferredStmtGenerationDayOfMonth BigDecimal,
+    generateRateChangeIntimationFlag Boolean,
+    groupBonusInteresFlag GroupBonusInteresFlag,
+    holdMailFlag HoldMailFlag,
+    interestWaiverFlag InterestWaiverFlag,
+    internetBankingAccessFlag Boolean,
+    inwardDirectDebitAuthorizationFlag Boolean,
+    jointAccountFlag Boolean,
+    leadDaysIntimation Boolean,
+    mailAddressControlFlag Boolean,
+    mobileFacilityFlag Boolean,
+    numberOfCheckWithdrawals Integer,
+    numberOfPastDueChecks Integer,
+    numberOfStatementCopies Integer,
+    overdraftLimitAmount Integer,
+    pointOfSaleFacilityFlag Boolean,
+    standingInstructionFlag Boolean,
+    sweepoutInstructionFlag Boolean,
+    availableBalance BigDecimal,
+    branchCode Integer,
+    branchName String,
+    branchShortName String,
+    creditsMonthTillDateAmount Integer,
+    currentBalance Integer,
+    customerNumber String,
+    isAbsaCustomer Boolean,
+    fullName String,
+    accountOpeningDate ZonedDateTime,
+    statementPeriodStartDate ZonedDateTime,
+    statementPeriodEndDate ZonedDateTime,
+    debitsLastDate ZonedDateTime,
+    creditLastDate ZonedDateTime,
+    debitsMonthTillDateAmount ZonedDateTime,
+    debitsYearTillDateAmount BigDecimal,
+    CreditInterestAccruedAmount BigDecimal,
+    DebitInterestAccruedAmount BigDecimal,
+    AdjustedCreditInterestAccrued BigDecimal,
+    AdjustedDebitInterestAccrued BigDecimal,
+    ProjectedTaxOnAccruedInterestAmount BigDecimal,
+    InterestAccruedInCurrentFinancialYear Integer,
+    issuedInventoryPropertyType String,
+    lastIssuedCheckNumber Integer,
+    languageCode LanguageCode,
+    lineNumber Integer,
+    minimumRequiredBalanceAmount BigDecimal,
+    minimumRequiredTradingBalanceAmount BigDecimal,
+    mtdCreditsCount Integer,
+    mtdDebitsCount Integer,
+    netAvailableBalanceForWithdrawal Integer,
+    netBalanceAmount Integer,
+    passbookLifecycleStatusCode Integer,
+    periodicAverageBalanceAmount BigDecimal,
+    previousDayClosingBookBalance BigDecimal,
+    productCode Integer,
+    productName String,
+    restrictedAccountFlag Boolean
+    staffFlag Boolean,
+    sweepinAmountOnLien Integer,
+    taxCode1 Integer,
+    taxCode2 Integer,
+    tdsExemptionLimitAmount1 Integer,
+    tdsExemptionLimitAmount2 Integer,
+    totalCASAHoldAmount BigDecimal,
+    totalUnclearFundAmount BigDecimal,
+    ytdCreditLastAmount Integer
+    ytdCreditsCount Integer
+    ytdDebitsCount Integer,
+    ytdDebitsLastAmount Integer,
+    message String,
+    sourceInfo String,
+    status String,
+    custFreeTextField1 String,
+    custFreeTextField2 String,
+    custFreeTextField3 String,
+    custFreeTextField4 String,
+    custFreeTextField5 String,
+    custFreeTextField6 String,
+    custFreeTextField7 String,
+    custFreeTextField8 String,
+    custFreeTextField9 String,
+    custFreeTextField10 String,
+    custFreeTextField11 String,
+    custFreeTextField12 String,
+    custFreeTextField13 String,
+    custFreeTextField14 String,
+    custFreeTextField15 String,
+    custFreeTextField16 String,
+    custFreeTextField17 String,
+    custFreeTextField18 String,
+    custFreeTextField19 String,
+    custFreeTextField20 String,
+    custFreeTextField21 String,
+    custFreeTextField22 String,
+    custFreeTextField23 String,
+    custFreeTextField24 String,
+    custFreeTextField25 String,
+    custFreeTextField26 String,
+    custFreeTextField27 String,
+    custFreeTextField28 String,
+    custFreeTextField29 String,
+    custFreeTextField30 String,
+    custFreeTextField31 String
 
 }
+
+enum LanguageCode
+{
+    English
+}
+
+enum GroupBonusInteresFlag
+{
+    N,Y
+}
+
+enum AccountStatus{
+
+    Active,
+    Closed,
+    ClosedWithdrawal
+
+}
+
+
+enum AccountLifecycleStatusCode {
+    ACTIVE("8")
+
+}
+
+enum  CASAAccountStatus{
+    ACTIVE ("8")
+
+}
+enum  MinorAccountStatusCode{
+    MAJOR,
+    MINOR
+
+}
+enum  HoldMailFlag{
+    ON_HOLD("1"),
+    OFF_HOLD("0")
+}
+
+
+enum  InterestWaiverFlag {
+    NO_INTEREST_WAIVER("0"),
+    INTEREST_WAIVER("1")
+
+}
+
+enum  AccountTitle {
+    CASH,
+    CHEQUING,
+    SAVINGS,
+    CREDIT_CARD,
+    CREDIT_CARD_DEBIT,
+    CHECKING
+
+}
+
+
+

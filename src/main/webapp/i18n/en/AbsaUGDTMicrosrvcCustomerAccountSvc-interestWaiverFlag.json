@@ -1,0 +1,9 @@
+{
+  "absaUgdtMicrosrvcCustomerAccountSvcApp": {
+    "InterestWaiverFlag": {
+      "null": "",
+      "NO_INTEREST_WAIVER": "0",
+      "INTEREST_WAIVER": "1"
+    }
+  }
+}

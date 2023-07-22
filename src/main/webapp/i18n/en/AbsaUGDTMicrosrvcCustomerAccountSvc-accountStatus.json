@@ -1,0 +1,10 @@
+{
+  "absaUgdtMicrosrvcCustomerAccountSvcApp": {
+    "AccountStatus": {
+      "null": "",
+      "Active": "Active",
+      "Closed": "Closed",
+      "ClosedWithdrawal": "ClosedWithdrawal"
+    }
+  }
+}

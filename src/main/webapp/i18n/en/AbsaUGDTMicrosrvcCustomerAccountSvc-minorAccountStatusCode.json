@@ -1,0 +1,9 @@
+{
+  "absaUgdtMicrosrvcCustomerAccountSvcApp": {
+    "MinorAccountStatusCode": {
+      "null": "",
+      "MAJOR": "MAJOR",
+      "MINOR": "MINOR"
+    }
+  }
+}
