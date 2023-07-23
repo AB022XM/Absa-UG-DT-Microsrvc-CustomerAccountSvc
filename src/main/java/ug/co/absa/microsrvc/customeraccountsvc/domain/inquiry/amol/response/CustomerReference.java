@@ -1,5 +1,5 @@
 
-package ug.co.absa.microsrvc.customeraccountsvc.domain.inquiry;
+package ug.co.absa.microsrvc.customeraccountsvc.domain.inquiry.amol.response;
 
 import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -8,12 +8,12 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "restrictedAccountFlag"
+    "fullName"
 })
 @Generated("jsonschema2pojo")
-public class RestrictionOptionSetting {
+public class CustomerReference {
 
-    @JsonProperty("restrictedAccountFlag")
-    public Boolean restrictedAccountFlag;
+    @JsonProperty("fullName")
+    public String fullName;
 
 }

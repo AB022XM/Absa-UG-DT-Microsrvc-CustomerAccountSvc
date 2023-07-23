@@ -1,4 +1,4 @@
-package ug.co.absa.microsrvc.customeraccountsvc.domain;
+package ug.co.absa.microsrvc.customeraccountsvc.domain.baseclass;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Column;

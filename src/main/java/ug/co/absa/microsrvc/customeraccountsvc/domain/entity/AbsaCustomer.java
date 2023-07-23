@@ -1,4 +1,4 @@
-package ug.co.absa.microsrvc.customeraccountsvc.domain;
+package ug.co.absa.microsrvc.customeraccountsvc.domain.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import ug.co.absa.microsrvc.customeraccountsvc.domain.baseclass.AbstractAuditingEntity;
 import ug.co.absa.microsrvc.customeraccountsvc.domain.enumeration.AccountLifecycleStatusCode;
 import ug.co.absa.microsrvc.customeraccountsvc.domain.enumeration.AccountStatus;
 import ug.co.absa.microsrvc.customeraccountsvc.domain.enumeration.CASAAccountStatus;

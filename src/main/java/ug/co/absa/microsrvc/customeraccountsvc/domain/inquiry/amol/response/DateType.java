@@ -1,5 +1,5 @@
 
-package ug.co.absa.microsrvc.customeraccountsvc.domain.inquiry;
+package ug.co.absa.microsrvc.customeraccountsvc.domain.inquiry.amol.response;
 
 import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -12,11 +12,11 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "value"
 })
 @Generated("jsonschema2pojo")
-public class InterestAccrualType {
+public class DateType {
 
     @JsonProperty("type")
     public String type;
     @JsonProperty("value")
-    public Float value;
+    public String value;
 
 }

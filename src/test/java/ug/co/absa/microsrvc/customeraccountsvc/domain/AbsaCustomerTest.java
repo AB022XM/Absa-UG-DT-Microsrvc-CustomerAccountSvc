@@ -3,6 +3,7 @@ package ug.co.absa.microsrvc.customeraccountsvc.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
+import ug.co.absa.microsrvc.customeraccountsvc.domain.entity.AbsaCustomer;
 import ug.co.absa.microsrvc.customeraccountsvc.web.rest.TestUtil;
 
 class AbsaCustomerTest {

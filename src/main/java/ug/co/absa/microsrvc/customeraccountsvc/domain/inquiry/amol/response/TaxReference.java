@@ -1,5 +1,5 @@
 
-package ug.co.absa.microsrvc.customeraccountsvc.domain.inquiry;
+package ug.co.absa.microsrvc.customeraccountsvc.domain.inquiry.amol.response;
 
 import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonInclude;

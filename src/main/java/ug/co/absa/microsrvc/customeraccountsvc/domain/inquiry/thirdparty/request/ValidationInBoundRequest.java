@@ -1,4 +1,4 @@
-package ug.co.absa.microsrvc.customeraccountsvc.domain;
+package ug.co.absa.microsrvc.customeraccountsvc.domain.inquiry.thirdparty.request;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;

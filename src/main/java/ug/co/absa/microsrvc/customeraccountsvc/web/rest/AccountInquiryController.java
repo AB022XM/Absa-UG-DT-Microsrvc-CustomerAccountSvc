@@ -25,8 +25,7 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
-import ug.co.absa.microsrvc.customeraccountsvc.domain.ValidationInBoundRequest;
-import ug.co.absa.microsrvc.customeraccountsvc.domain.inquiry.amol.AccountInquiryOutBountRes;
+import ug.co.absa.microsrvc.customeraccountsvc.domain.inquiry.thirdparty.request.ValidationInBoundRequest;
 import ug.co.absa.microsrvc.customeraccountsvc.service.IAccountInquiryService;
 import ug.co.absa.microsrvc.customeraccountsvc.util.AccountInquiryConstants;
 

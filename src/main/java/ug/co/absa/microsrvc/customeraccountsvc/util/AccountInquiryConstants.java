@@ -2,11 +2,15 @@ package ug.co.absa.microsrvc.customeraccountsvc.util;
 
 public class AccountInquiryConstants {
 
-	private AccountInquiryConstants() {
+
+    private AccountInquiryConstants() {
 
 	}
 
-	public static final String BLANK = "";
+    public static final String TRANSACTION_ID = "transactionId" ;
+
+
+    public static final String BLANK = "";
 	public static final String EXCEPTION_OCCURRED = "Exception Occurred";
 	public static final String EXCEPTION = "Exception";
 	public static final String SUCCESS_CODE = "200";
