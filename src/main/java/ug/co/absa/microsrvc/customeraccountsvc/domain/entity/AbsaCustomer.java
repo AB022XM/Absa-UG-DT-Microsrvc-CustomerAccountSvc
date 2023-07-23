@@ -3,6 +3,8 @@ package ug.co.absa.microsrvc.customeraccountsvc.domain.entity;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
+import java.util.HashMap;
+import java.util.List;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -20,6 +22,10 @@ import ug.co.absa.microsrvc.customeraccountsvc.domain.enumeration.HoldMailFlag;
 import ug.co.absa.microsrvc.customeraccountsvc.domain.enumeration.InterestWaiverFlag;
 import ug.co.absa.microsrvc.customeraccountsvc.domain.enumeration.LanguageCode;
 import ug.co.absa.microsrvc.customeraccountsvc.domain.enumeration.MinorAccountStatusCode;
+import ug.co.absa.microsrvc.customeraccountsvc.domain.inquiry.amol.response.AmolCustomerInfoResponse;
+import ug.co.absa.microsrvc.customeraccountsvc.domain.inquiry.amol.response.CustomerReference;
+import ug.co.absa.microsrvc.customeraccountsvc.domain.inquiry.amol.response.Data;
+import ug.co.absa.microsrvc.customeraccountsvc.domain.inquiry.amol.response.DateType;
 
 /**
  * A AbsaCustomer.
@@ -536,4 +542,18 @@ public class AbsaCustomer extends AbstractAuditingEntity<AbsaCustomer> implement
             ", custFreeTextField31='" + getCustFreeTextField31() + "'" +
             "}";
     }
+
+
+    public static AbsaCustomer  toAbsaCustomer(AmolCustomerInfoResponse amolCIResp){
+        AbsaCustomer absaCustomer = new AbsaCustomer();
+        Data data=amolCIResp.getData();
+              absaCustomer.setAccountNumber(data.accountNumber);
+        absaCustomer.setAccountTitle(data.accountTitle);
+        absaCustomer.setCustomerNumber(data.customerNumber);
+        absaCustomer.setIsAbsaCustomer(true);
+        absaCustomer.setFullName("");
+        absaCustomer.setAccountCurrency(data.accountCurrency);
+        return absaCustomer;
+    }
+
 }

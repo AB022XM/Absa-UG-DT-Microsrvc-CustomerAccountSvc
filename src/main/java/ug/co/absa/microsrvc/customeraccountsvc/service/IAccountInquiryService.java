@@ -9,7 +9,6 @@ import java.io.IOException;
 
 public interface IAccountInquiryService {
 
-	ResponseEntity<AccountInquiryOutBountRes> accountInquiryService(ValidationInBoundRequest validationInBoundRequest);
 
     AmolCustomerInfoResponse validateInputRequest(String accountNumber) throws IOException;
 }

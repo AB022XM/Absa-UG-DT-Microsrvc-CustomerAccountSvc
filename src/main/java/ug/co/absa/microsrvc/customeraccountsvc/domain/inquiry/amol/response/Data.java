@@ -7,6 +7,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -54,6 +58,7 @@ import jakarta.validation.Valid;
     "ytdDebitsLastAmount"
 })
 @Generated("jsonschema2pojo")
+@Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class Data {
 
     @JsonProperty("accountCurrency")
@@ -148,5 +153,7 @@ public class Data {
     public Integer ytdDebitsCount;
     @JsonProperty("ytdDebitsLastAmount")
     public Float ytdDebitsLastAmount;
+
+
 
 }

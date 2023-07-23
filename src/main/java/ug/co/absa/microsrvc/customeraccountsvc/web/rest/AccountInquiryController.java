@@ -25,9 +25,16 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
+import ug.co.absa.microsrvc.customeraccountsvc.domain.inquiry.amol.response.AmolCustomerInfoResponse;
 import ug.co.absa.microsrvc.customeraccountsvc.domain.inquiry.thirdparty.request.ValidationInBoundRequest;
+import ug.co.absa.microsrvc.customeraccountsvc.domain.inquiry.thirdparty.response.AccountInquiryOutBountRes;
+import ug.co.absa.microsrvc.customeraccountsvc.domain.inquiry.thirdparty.response.Data;
+import ug.co.absa.microsrvc.customeraccountsvc.repository.AbsaCustomerRepository;
 import ug.co.absa.microsrvc.customeraccountsvc.service.IAccountInquiryService;
 import ug.co.absa.microsrvc.customeraccountsvc.util.AccountInquiryConstants;
+
+import java.io.IOException;
+
 
 
 @Path("/customer")
@@ -35,6 +42,8 @@ import ug.co.absa.microsrvc.customeraccountsvc.util.AccountInquiryConstants;
 @Consumes(MediaType.APPLICATION_JSON)
 @Tag(name = "Account Enquiry For Credit Card System FV Resources")
 public class AccountInquiryController {
+    @Inject
+    AbsaCustomerRepository absaCustomerRepository;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AccountInquiryController.class);
 
@@ -59,14 +68,23 @@ public class AccountInquiryController {
         @APIResponse(responseCode = AccountInquiryConstants.INTERNAL_ERROR_CODE, description = AccountInquiryConstants.INTERNAL_ERROR_DESC, content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = ResponseEntity.class))),
         @APIResponse(responseCode = AccountInquiryConstants.SOR_UNAVAILABLE_CODE, description = AccountInquiryConstants.SOR_UNAVAILABLE_MSG, content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = ResponseEntity.class))),
         @APIResponse(responseCode = AccountInquiryConstants.TIMEOUT_CODE, description = AccountInquiryConstants.GATEWAY_TIMEOUT, content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = ResponseEntity.class))) })
-    public Response accountInquiry(@RequestBody ValidationInBoundRequest validationInquiryRequest) {
+    public Response accountInquiry(@RequestBody ValidationInBoundRequest validationInquiryRequest) throws IOException {
         final String METHOD_NAME = "accountInquiry";
        // LOGGER.info(METHOD_NAME, apiRequestHeader.getConsumerUniqueReferenceId(),
         if(StringUtils.isNotEmpty(validationInquiryRequest.getAccountNumber()))
-            AccountInquiryConstants.INSIDE_CONTROLLER, AccountInquiryConstants.REQUEST_STARTS);
+            LOGGER.info(METHOD_NAME, AccountInquiryConstants.REQUEST_STARTS);
 
-        ResponseEntity<AccountInquiryOutBountRes> response = accountInquiryService.accountInquiryService(validationInquiryRequest);
-        return Response.ok(response).build();
+         AmolCustomerInfoResponse amolResp =
+           accountInquiryService .validateInputRequest(validationInquiryRequest.getAccountNumber());
+
+        AccountInquiryOutBountRes accInqResp = new AccountInquiryOutBountRes();
+        accInqResp.setCode("00");
+        accInqResp.setMessage("Account Account inquiry Successful");
+        accInqResp.setSourceInfo(null);
+        accInqResp.setData(new Data(validationInquiryRequest.getAccountNumber(),amolResp.getData().accountTitle,
+            true,""));
+        accInqResp.setStatus("SUCCESS");
+        return Response.ok(accInqResp).build();
     }
 
     public Response fallbackForAccountInquiry(ValidationInBoundRequest validationInBoundRequest) {
