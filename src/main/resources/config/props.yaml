@@ -1,0 +1,36 @@
+#----- Common Properties Start-----#
+#logger information
+project_name
+    account-inquiry-system-fv-v2
+
+log4j.appender.console=org.apache.log4j.ConsoleAppender
+log4j.appender.console.layout=org.apache.log4j.PatternLayout
+log4j.appender.console.layout.ConversionPattern=[%p] [%c{1}:%L] - [%m]%n
+log4j.rootLogger=INFO, console
+
+  #Masking information
+  #Masking fields
+  #secureFields=
+partialSecureFields=account
+
+  #SOR Masking Fields
+  #sorSecureFields=
+sorPartialSecureFields=account
+
+  #SOR Connection Details
+account.inquiry.system.fv.url=https://fiserv-ppd-apicast.intra.absa.co.za:443/api/fs/fv_emea/v3/accountDetailInquiry
+
+app.id=f5ee8f60
+app.key=332af8060a1a243b994eba5672b36546
+app.code=CABUAA02
+
+  #Timeout
+com.absa.amol.accountinquiry.fv.controller.AccountInquiryController/accountInquiry/Timeout/value=10000
+
+  #validation error messages
+account.notnullempty.error.message=account cannot be null or empty.
+account.regex.error.message=Incorrect value for account. Please enter valid value. account should have 1-19 numeric value.
+scheme.regex.error.message=Incorrect value for scheme. Please enter valid value. scheme should have 0-5 alphanumeric value.
+panEncryption.regex.error.message=Incorrect value for panEncryption. Please enter valid value. panEncryption should have 0-1 alphanumeric value.
+clientNumber.regex.error.message=Incorrect value for clientNumber. Please enter valid value. clientNumber should have 1-10 alphanumeric value.
+clientNumber.notnullempty.error.message=clientNumber cannot be null or empty.

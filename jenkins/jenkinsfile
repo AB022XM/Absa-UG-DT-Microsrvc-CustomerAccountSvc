@@ -1,0 +1,189 @@
+    
+// Defining application name
+      def appName="account-inquiry-system-fv-v2"
+      def git_repo="https://github.com/absa-group/account-inquiry-system-fv-v2.git"
+      def branchName="release/account-inquiry-system-fv-v2"
+      def gitCredentialId="SVC-Amol-api-github"
+      def namespace="amol-api-dev"
+
+     
+      def maven_args="-Pfuse,!wildfly,!development,!wildfly-start-or-download"
+      def java_options="-Ddatagrid.service.base.url=https://amol-datagrid-service.amol-datagrid-preprod.svc/v1/amol-datagrid-service"
+      def sonar_exec="**/model/*.java,**/webapp/**/*.*"
+      
+// Template for  maven slave with mvn-3.6.3 and java 11 image
+podTemplate(label: "$appName-pod", 
+             cloud: "openshift", 
+             inheritFrom: "maven",
+             containers: [
+                containerTemplate(name: "jnlp", 
+                       image: "docker-registry.default.svc:5000/amol-devops/jenkins-maven-agent-custom-jdk11-mvn3.6.3:test1", 
+                       resourceRequestMemory: "1024Mi", 
+                       resourceLimitMemory: "2048Mi", 
+                       envVars: [
+                envVar(key: "CONTAINER_HEAP_PERCENT", value: "0.50"),
+                envVar(key: "GIT_SSL_NO_VERIFY", value: "true"), 
+		envVar(key: "MAVEN_OPTS", value: "-Xmx1024m")
+    ])
+]){
+
+//starting agent node
+  node("$appName-pod") {
+
+//git checkout on slave node
+            stage("Checkout") {
+                                  sh''' git config --global https.proxy http://vsejhbproxy.intra.absaafrica:9480/
+                                         git config --global http.proxy http://vsejhbproxy.intra.absaafrica:9480/
+                                         '''
+                                       git branch: "$branchName" , credentialsId: "$gitCredentialId", url: "$git_repo"
+                           withCredentials([usernamePassword(credentialsId: 'SVC-Amol-api-github', passwordVariable: 'PASSWORD', usernameVariable: 'USER')]) {
+                                                        sh "git clone https://${USER}:${PASSWORD}@github.com/absa-group/devops-config.git"}
+                       }
+// mvn configuration stage creating custom truststore and importing Nexus and SonarQube certificates
+            stage("mvnConfig")  {
+                            sh '''  mkdir ~/.m2
+			            cp  ./devops-config/configuration/settings.xml ~/.m2/settings.xml 
+			          '''
+            }
+            
+	    stage("Test"){
+                    withCredentials([usernamePassword(credentialsId: 'SVC-Amol-api-jfrog', passwordVariable: 'PASS', usernameVariable: 'USR')]) {
+                    sh '''mvn -Djavax.net.ssl.trustStore=./devops-config/certs/.cacerts/cacerts -DUSR="$USR" -DPWD="$PASS" test -Pfuse,!wildfly,!development,!wildfly-start-or-download'''
+		    }
+            }
+
+//parallel stages for sonarQube analysis and junit tests
+
+	   stage("SonarQube"){
+	    withSonarQubeEnv(credentialsId: 'Sonar') {
+	     sh "mvn -e ${maven_args} -Dsonar.java.source=11 -Djavax.net.ssl.trustStore=./devops-config/certs/.cacerts/cacerts  -Dsonar.exclusions=${sonar_exec} -Dsonar.projectKey=ARO-${appName} -Dsonar.projectName=ARO-${appName} -Dsonar.host.url=https://sonarqube-prod.absacorp.com -Dsonar.login=0bf9e9e024f214f60220ebe21a6cff7529cbab0d   clean package sonar:sonar ${maven_args}"
+	    }
+	   }
+	
+// deploying artifacts on Artifactory repo
+	   stage("Artifactory upload") {
+	        withCredentials([usernamePassword(credentialsId: 'SVC-Amol-api-jfrog', passwordVariable: 'PASS', usernameVariable: 'USR')]) {
+	           sh '''mvn -Djavax.net.ssl.trustStore=./devops-config/certs/.cacerts/cacerts -DaltDeploymentRepository=central::default::https://artifacts.bcp.absa.co.za/artifactory/amol-maven/ -DUSR="$USR" -DPWD="$PASS" -e deploy -Pfuse,!wildfly,!development,!wildfly-start-or-download'''
+	        }
+	   }
+	   
+//stage to process Openshift template
+            stage("Processing OStemplate"){
+                                                def prop_name= sh( returnStdout: true, script: "ls src/main/resources/properties/dev/ | cut -d'.' -f1").trim()
+                                                sh"oc delete configmap -l app=${appName} -n ${namespace}"
+                                                sh"oc create configmap ${appName} --from-file=src/main/resources/properties/dev/${prop_name}.properties -n ${namespace}"
+                                                sh"oc label configmap ${appName} app=${appName} -n ${namespace}"
+                                                def err =  sh( returnStdout: true, script: "oc get dc -l app=${appName} -n ${namespace} 2> test && cat test").trim()
+                                                if(err.equals("No resources found.")){
+                                                echo "No resources available creating resources"
+
+                                                sh "oc process -f ./devops-config/template/airlites2i.yaml -p APP_NAME=${appName} -p CONF_NAME=${appName} -p PROP_NAME=${prop_name} -p GIT_REPO=${git_repo} -p GIT_BRANCH=${branchName} -p JAVA_OPT=${java_options} -p MAVEN_ARGS=${maven_args} |oc apply -f- -n ${namespace}"
+                                                }
+                                                else {
+                                                echo "service is already deployed proceeding with the Build Image"
+                                                }
+             }
+
+//stage to annotate service
+          stage("annotate"){
+                      def err=sh(returnStdout: true, script: "chmod +x ./devops-config/scripts/annotate.sh && ./devops-config/scripts/annotate.sh ${appName} ${namespace}").trim()
+                      echo "$err"
+                      if(err.equals("error")){
+                        echo "service is being annotated"
+                        sh"oc annotate service ${appName}  service.alpha.openshift.io/serving-cert-secret-name=$appName -n ${namespace}"
+	  	      }
+                      else{
+                        echo "service already annotated" 
+		      }
+
+	   }
+
+
+// building App image using Openshift build config
+           stage("Build") {
+
+                        def status = sh(returnStdout: true, script: "oc start-build ${appName}-build-artifacts -n ${namespace}")
+                    def result = status.split("\n").find{ it.matches("^build.*started") }
+
+                    if(!result) {
+                      echo "ERROR: No started build found for ${appName}"
+                      currentBuild.result = 'FAILURE'
+                      return
+                    }
+
+                    // result can be:
+                    // - build "build-name" started
+                    // - build build.build.openshift.io/build-name started
+                    // - build "build.build.openshift.io/build-name" started
+                    // Goal is to isolate "build-name"
+                    def startedBuild = result.replaceAll("build [^0-9a-zA-Z]*", "").replaceAll("[^0-9a-zA-Z]* started", "").replaceFirst("^.*/", "")
+                    echo "Build ${startedBuild} has started. Now watching it ..."
+
+                    timeout(time: 40, unit: 'MINUTES') {
+                      openshift.withCluster() {
+                        openshift.withProject("${namespace}") {
+                          def build = openshift.selector('builds', "${startedBuild}")
+                          build.untilEach {
+                            def object = it.object()
+                            if(object.status.phase == "Failed") {
+                              error("Build ${startedBuild} failed")
+                            }
+                            return object.status.phase == "Complete"
+                          }
+                        }
+                      }
+                    }
+                                        def stat = sh(returnStdout: true, script: "oc start-build ${appName} -n ${namespace}")
+
+                    def resu = stat.split("\n").find{ it.matches("^build.*started") }
+
+                    if(!resu) {
+                      echo "ERROR: No started build found for ${appName}"
+                      currentBuild.resu = 'FAILURE'
+                      return
+                    }
+
+                    // result can be:
+                    // - build "build-name" started
+                    // - build build.build.openshift.io/build-name started
+                    // - build "build.build.openshift.io/build-name" started
+                    // Goal is to isolate "build-name"
+                    def SB = resu.replaceAll("build [^0-9a-zA-Z]*", "").replaceAll("[^0-9a-zA-Z]* started", "").replaceFirst("^.*/", "")
+                    echo "Build ${SB} has started. Now watching it ..."
+
+                    timeout(time: 20, unit: 'MINUTES') {
+                      openshift.withCluster() {
+                        openshift.withProject("${namespace}") {
+                          def build2 = openshift.selector('builds', "${SB}")
+                          build2.untilEach {
+                            def object = it.object()
+                            if(object.status.phase == "Failed") {
+                              error("Build ${SB} failed")
+                            }
+                            return object.status.phase == "Complete"
+                          }
+                        }
+                      }
+                    }
+                  }
+
+// Deploying application image on Openshift dev namespace
+            stage("Deploy to dev") {
+                    openshift.withCluster() {
+                      openshift.withProject("${namespace}") {
+                      def route = openshift.selector('route' , "$appName")
+					    route.delete('--ignore-not-found')
+                        def dc = openshift.selector('dc', "${appName}")
+                                            dc.rollout().status()
+
+                      }
+                    }
+                  }
+        stage("Reencryption of route"){
+				  sh"oc create route reencrypt  --service=$appName --cert=./devops-config/DEVROUTE/AMOLWCDEV.crt --key=./devops-config/DEVROUTE/AMOLWCDEV.key --hostname=$appName-dev.amol-api-dev.roanprd-openshift.intra.absa.co.za -n ${namespace}"
+				  
+				  }
+                }
+
+}
+         

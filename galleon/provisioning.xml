@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<installation xmlns="urn:jboss:galleon:provisioning:3.0">
+  <feature-pack location="wildfly@maven(org.jboss.universe:community-universe)#28.0.0.Final">
+    <default-configs inherit="false"/>
+    <packages inherit="false">
+    </packages>
+  </feature-pack>
+  <feature-pack location="wildfly@maven(org.jboss.universe:community-universe):current/beta#28.0.0.final"/>
+
+  <config model="standalone" name="standalone.xml">
+    <layers>
+	<include name="logging"/>
+	<include name="transactions"/>
+        <include name="jaxrs"/>
+	<include name="microprofile-health"/>
+	<include name="microprofile-fault-tolerance"/>
+	<include name="camel"/>
+	<exclude name="git-history"/>
+    </layers>
+  </config>
+ <options>
+    <option name="optional-packages" value="passive+"/>
+  </options>
+</installation>

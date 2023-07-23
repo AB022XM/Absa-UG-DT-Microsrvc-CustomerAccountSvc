@@ -1,11 +1,16 @@
 package ug.co.absa.microsrvc.customeraccountsvc;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Contact;
+import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.info.License;
 import jakarta.annotation.PostConstruct;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Optional;
+import jakarta.ws.rs.ApplicationPath;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +24,13 @@ import tech.jhipster.config.JHipsterConstants;
 import ug.co.absa.microsrvc.customeraccountsvc.config.ApplicationProperties;
 import ug.co.absa.microsrvc.customeraccountsvc.config.CRLFLogConverter;
 
+@ApplicationPath("/v1")
+@OpenAPIDefinition(
+    info = @Info(title = "Account Inquiry AMOL", version = "1.0.0",
+        description = "Account Inquiry AMOL",
+        contact = @Contact(name = "AMOL"),
+        license = @License(name = "AMOL")
+    ))
 @SpringBootApplication
 @EnableConfigurationProperties({ LiquibaseProperties.class, ApplicationProperties.class })
 public class AbsaUgdtMicrosrvcCustomerAccountSvcApp {
